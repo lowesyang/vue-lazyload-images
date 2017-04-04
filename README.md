@@ -1,4 +1,4 @@
-# vue-lazylaod-images
+# vue-lazyload-images
 A plugin of lazy-load images for Vue2.x
 
 ## Demo
