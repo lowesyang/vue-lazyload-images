@@ -18,16 +18,15 @@ class LazyImage{
         this.initListener(el);
     }
     initListener(el){
-        let scrollParent=getScrollParent(el);
+        let scrollParent=getScrollParent(el),position;
         if(this.scrollParent.indexOf(scrollParent)<0){
-            let position=getStyle(scrollParent,"position");
-            if(!position || position=="static") scrollParent.style.position="relative";
+            position = getStyle(scrollParent, "position");
+            if (position==="" || position === "static") scrollParent.style.position = "relative";
             this.scrollParent.push(scrollParent);
             this.eventsList.forEach((event)=>{
                 scrollParent.addEventListener(event,this.loadImage.bind(this));
             })
         }
-
     }
     loadImage(){
         let scrollParent,src,el;

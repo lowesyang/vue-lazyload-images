@@ -1,6 +1,6 @@
 import Vue from "vue"
-// import LazyImage from "../src";
-import LazyImage from "vue-lazy-images";
+import LazyImage from "../src";
+// import LazyImage from "vue-lazy-images";
 Vue.use(LazyImage)
 
 new Vue({

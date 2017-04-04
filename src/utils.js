@@ -1,4 +1,5 @@
 const getStyle=(el,prop)=>{
+    if(el===window) return null;
     return getComputedStyle?
         getComputedStyle(el,null).getPropertyValue(prop)
         :el.style[prop]
