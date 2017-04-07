@@ -1,4 +1,7 @@
 # vue-lazyload-images
+[![npm](https://img.shields.io/badge/npm-v1.1.7-green.svg)](https://www.npmjs.com/package/vue-lazy-images)
+[![npm](https://img.shields.io/npm/l/express.svg)](https://opensource.org/licenses/mit-license.php)
+
 A plugin of lazy-load images for Vue2.x
 
 ## Demo
@@ -70,7 +73,4 @@ index.html
 |:----|:------------|:--------|:-----|
 | offset | offset distance for pre-loading | 0 | Number |
 | events | events that you want parentNode listen for | ['scroll', 'wheel', 'mousewheel', 'resize', 'animationend', 'transitionend', 'touchmove'] | Array |
-
-## License
-[MIT](https://opensource.org/licenses/MIT)
 
