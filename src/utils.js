@@ -26,6 +26,7 @@ const getScrollParent=(el)=>{
 
 const checkInView=(el,scrollParent,offset)=>{
     let scrollTop,clientH,clientW,scrollLeft;
+    let offsetTop=0,offsetLeft=0;
     if(scrollParent === window) {
         scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
         scrollLeft=document.documentElement.scrollLeft||document.body.scrollLeft;
@@ -38,7 +39,12 @@ const checkInView=(el,scrollParent,offset)=>{
         clientH = scrollParent.clientHeight;
         clientW=scrollParent.clientWidth;
     }
-    if(scrollTop+clientH>el.offsetTop-offset && scrollLeft+clientW>el.offsetLeft-offset){
+    while(el!=scrollParent && el!=null){
+        offsetTop+=el.offsetTop;
+        offsetLeft+=el.offsetLeft;
+        el=el.offsetParent;
+    }
+    if(scrollTop+clientH>offsetTop-offset && scrollLeft+clientW>offsetLeft-offset){
         return true;
     }
     else return false;
