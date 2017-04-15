@@ -35,16 +35,19 @@ const checkInView=(el,scrollParent,offset)=>{
     }
     else {
         scrollTop = scrollParent.scrollTop;
-        scrollLeft=scrollParent.scrollLeft;
+        scrollLeft = scrollParent.scrollLeft;
         clientH = scrollParent.clientHeight;
         clientW=scrollParent.clientWidth;
     }
     while(el!=scrollParent && el!=null){
-        offsetTop+=el.offsetTop;
-        offsetLeft+=el.offsetLeft;
+        let borderWidth=parseInt(getStyle(el,"border-width"));
+        offsetTop+=el.offsetTop+borderWidth;
+        offsetLeft+=el.offsetLeft+borderWidth;
         el=el.offsetParent;
     }
-    if(scrollTop+clientH>offsetTop-offset && scrollLeft+clientW>offsetLeft-offset){
+    if(scrollTop+clientH>offsetTop-offset
+        && scrollLeft+clientW>offsetLeft-offset
+    ){
         return true;
     }
     else return false;
