@@ -1,5 +1,5 @@
 # vue-lazyload-images
-[![npm](https://img.shields.io/badge/npm-v1.1.10-green.svg)](https://www.npmjs.com/package/vue-lazy-images)
+[![npm](https://img.shields.io/badge/npm-v1.2.0-green.svg)](https://www.npmjs.com/package/vue-lazy-images)
 [![npm](https://img.shields.io/npm/l/express.svg)](https://opensource.org/licenses/mit-license.php)
 
 A plugin of lazy-load images for Vue2.x

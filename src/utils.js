@@ -25,33 +25,43 @@ const getScrollParent=(el)=>{
 };
 
 const checkInView=(el,scrollParent,offset)=>{
-    let scrollTop,clientH,clientW,scrollLeft;
+    let clientH,clientW;
     let offsetTop=0,offsetLeft=0;
     if(scrollParent === window) {
-        scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
-        scrollLeft=document.documentElement.scrollLeft||document.body.scrollLeft;
-        clientH=document.documentElement.clientHeight||document.body.clientHeight;
-        clientW=document.documentElement.clientWidth||document.body.clientWidth;
+        clientH = document.documentElement.clientHeight || document.body.clientHeight;
+        clientW = document.documentElement.clientWidth || document.body.clientWidth;
+
+        // use getBoundingClientRect
+        let top, left, right, bottom, rect;
+        rect = el.getBoundingClientRect();
+        top = rect.top - offset;
+        left = rect.left - offset;
+        bottom = rect.bottom + offset;
+        right = rect.right + offset;
+
+        if (top < clientH && bottom > 0 && left < clientW && right > 0) {
+            return true;
+        }
+        else return false;
     }
     else {
-        scrollTop = scrollParent.scrollTop;
-        scrollLeft = scrollParent.scrollLeft;
+        let scrollTop = scrollParent.scrollTop;
+        let scrollLeft = scrollParent.scrollLeft;
         clientH = scrollParent.clientHeight;
         clientW=scrollParent.clientWidth;
+        while(el!=scrollParent && el!=null){
+            let borderWidth=parseInt(getStyle(el,"border-width"));
+            offsetTop+=el.offsetTop+borderWidth;
+            offsetLeft+=el.offsetLeft+borderWidth;
+            el=el.offsetParent;
+        }
+        if(scrollTop+clientH>offsetTop-offset
+            && scrollLeft+clientW>offsetLeft-offset
+        ){
+            return true;
+        }
+        else return false;
     }
-    while(el!=scrollParent && el!=null){
-        let borderWidth=parseInt(getStyle(el,"border-width"));
-        offsetTop+=el.offsetTop+borderWidth;
-        offsetLeft+=el.offsetLeft+borderWidth;
-        el=el.offsetParent;
-    }
-    if(scrollTop+clientH>offsetTop-offset
-        && scrollLeft+clientW>offsetLeft-offset
-    ){
-        return true;
-    }
-    else return false;
-
 }
 
 export {
