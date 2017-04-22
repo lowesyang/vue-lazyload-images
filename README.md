@@ -4,6 +4,8 @@
 
 A plugin of lazy-load images for Vue2.x
 
+Support images lazyload in window or build-in element.
+
 ## Demo
 ![Demo](https://github.com/yyh1102/vue-lazylaod-images/blob/master/demo.gif)
 
