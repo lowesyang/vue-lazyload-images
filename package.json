@@ -8,7 +8,7 @@
     "test": "karma start config/karma.conf.js --single-run",
     "start": "webpack-dev-server --hot --inline --port 8080 --config config/webpack.dev.config.js",
     "build": "webpack --config config/webpack.prod.config.js",
-    "coverage": "coveralls"
+    "coverage": "cat ./coverage/lcov.info | coveralls"
   },
   "keywords": [
     "lazy-load",
@@ -32,6 +32,7 @@
     "karma-babel-preprocessor": "^6.0.1",
     "karma-chai": "^0.1.0",
     "karma-coverage": "^1.1.1",
+    "karma-coveralls": "^1.1.2",
     "karma-mocha": "^1.3.0",
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-requirejs": "^1.1.0",
