@@ -9,6 +9,5 @@ before_install:
 script:
   - npm run test
   - npm run build
-  - npm publish
 after_script:
   - npm run coverage
