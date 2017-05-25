@@ -4,6 +4,11 @@ node_js:
 cache:
   directories:
     - node_modules
+before_install:
+    - npm install
 script:
-  - npm run test:single
+  - npm run test
   - npm run build
+  - npm publish
+after_script:
+  - npm run coverage

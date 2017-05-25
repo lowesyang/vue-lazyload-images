@@ -3,13 +3,18 @@ const DEFAULT_EVENTS = ['scroll', 'wheel', 'mousewheel', 'resize', 'animationend
 
 class LazyImage{
     constructor(options={}){
+        this.init(options);
+    }
+    init(options={}){
         this.images=[];             //list of unload-images info
         this.scrollParent=[];      //list of scrollParent listener
         this.options=options;
         this.eventsList=options.eventsList || DEFAULT_EVENTS;
     }
     addImage(el){
+        if(el.tagName.toLowerCase()!=='img') return;
         let scrollParent=getScrollParent(el);
+        if(!scrollParent) return;
         let image={
             el:el,
             scrollParent:scrollParent
@@ -36,7 +41,7 @@ class LazyImage{
             el=images[i].el;
             // ready to enter the screen but still "options.offset" px to go,load the img
             if(checkInView(el,scrollParent,this.options.offset)){
-                src=el.dataset.src;
+                src=el.dataset.src || '';
                 el.setAttribute("src",src);
                 images.splice(i--,1);
             }
@@ -44,4 +49,4 @@ class LazyImage{
     }
 }
 
-export default LazyImage
+export default LazyImage;
