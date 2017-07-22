@@ -7,12 +7,14 @@ const getStyle=(el,prop)=>{
 
 const checkOverflow=(el)=>{
     let info=getStyle(el,"overflow")+getStyle(el,"overflow-y")+getStyle(el,"overflow-x");
-    if(/scroll|auto/.test(info)) return true;
-    else return false;
+    return /scroll|auto/.test(info);
 };
 
 const getScrollParent=(el)=>{
-    if(!(el instanceof HTMLElement)) return window;
+    if(!(el instanceof HTMLElement)) {
+        console.error(`${el} is not an HTMLElement`);
+        return null;
+    }
     let parent=el;
     while(parent){
         if(parent===document.body || parent===document.documentElement) break;
@@ -38,10 +40,7 @@ const checkInView=(el,scrollParent = window,offset = 0)=>{
         left = rect.left - offset;
         bottom = rect.bottom + offset;
         right = rect.right + offset;
-        if (top < clientH && bottom > 0 && left < clientW && right > 0) {
-            return true;
-        }
-        else return false;
+        return top < clientH && bottom > 0 && left < clientW && right > 0
     }
     else {
         let scrollTop = scrollParent.scrollTop;
@@ -55,12 +54,9 @@ const checkInView=(el,scrollParent = window,offset = 0)=>{
             offsetLeft+=el.offsetLeft+borderWidth;
             el=el.offsetParent;
         }
-        if(scrollTop+clientH>offsetTop-offset && offsetTop+height+offset>scrollTop
+        return scrollTop+clientH>offsetTop-offset && offsetTop+height+offset>scrollTop
             && scrollLeft+clientW>offsetLeft-offset && offsetLeft+width+offset>scrollLeft
-        ){
-            return true;
-        }
-        else return false;
+
     }
 }
 

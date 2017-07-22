@@ -15,7 +15,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        'test/**/*.spec.js'
+      'node_modules/babel-polyfill/dist/polyfill.min.js', // ES6 compatibility
+      'test/**/*.spec.js',
     ],
 
 

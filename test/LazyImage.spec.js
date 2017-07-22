@@ -7,7 +7,7 @@ let lazyImage=new LazyImage();
 describe('Class LazyImage',()=>{
     it('new Class',()=>{
         expect(lazyImage.images).to.be.an.instanceof(Array);
-        expect(lazyImage.scrollParent).to.be.an.instanceof(Array);
+        expect(lazyImage.scrollParent).to.be.an.instanceof(WeakSet);
         expect(lazyImage.options).to.be.an('object');
         expect(lazyImage.eventsList).to.be.an.instanceof(Array);
     })
@@ -21,7 +21,7 @@ describe('Class LazyImage',()=>{
         });
         expect(lazyImage.options.test).to.be.equal('Success');
         expect(lazyImage.images).to.be.an.instanceof(Array);
-        expect(lazyImage.scrollParent).to.be.an.instanceof(Array);
+        expect(lazyImage.scrollParent).to.be.an.instanceof(WeakSet);
         expect(lazyImage.options).to.be.an('object');
         expect(lazyImage.options.test).to.be.equal('Success');
         expect(lazyImage.eventsList).to.be.an.instanceof(Array);
@@ -39,14 +39,12 @@ describe('Function addImage and initListener',()=>{
         let div=document.createElement('div');
         lazyImage.addImage(div);
         expect(lazyImage.images.length).to.be.equal(0);
-        expect(lazyImage.scrollParent.length).to.be.equal(0);
     })
 
     it('@Param el is an img without parents',()=>{
         let img=new Image();
         lazyImage.addImage(img);
         expect(lazyImage.images.length).to.be.equal(0);
-        expect(lazyImage.scrollParent.length).to.be.equal(0);
     })
 
     it('@Param el is an img owned by the body',()=>{
@@ -54,7 +52,6 @@ describe('Function addImage and initListener',()=>{
         document.body.appendChild(img);
         lazyImage.addImage(img);
         expect(lazyImage.images.length).to.be.equal(1);
-        expect(lazyImage.scrollParent.length).to.be.equal(1);
     })
 
     it('@Param el is an img owned by a div without parents',()=>{
@@ -64,7 +61,6 @@ describe('Function addImage and initListener',()=>{
         div.appendChild(img);
         lazyImage.addImage(img);
         expect(lazyImage.images.length).to.be.equal(0);
-        expect(lazyImage.scrollParent.length).to.be.equal(0);
     })
 
     it('@Param el is an img owned by a div with parents "body"',()=>{
@@ -77,7 +73,6 @@ describe('Function addImage and initListener',()=>{
         document.body.appendChild(div);
         lazyImage.addImage(img);
         expect(lazyImage.images[0].scrollParent.className).to.be.equal('parent');
-        expect(lazyImage.scrollParent[0].className).to.be.equal('parent');
     })
 })
 
@@ -94,5 +89,14 @@ describe('Function loadImage',()=>{
         img.style.marginTop='0px';
         lazyImage.loadImage();
         expect(lazyImage.images.length).to.be.equal(0);
+    })
+
+    it('Unmounted image',()=>{
+        let img=new Image();
+        img.setAttribute('data-src','test');
+        lazyImage.addImage(img);
+        lazyImage.loadImage();
+        expect(lazyImage.images.length).to.be.equal(0);
+        expect(img.src).to.be.equal('');
     })
 })
