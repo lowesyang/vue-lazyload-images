@@ -22,6 +22,10 @@ class LazyImage{
         this.images.push(image);
         this.initListener(scrollParent);
     }
+    removeImage(el){
+        const index = this.images.findIndex(item=>item.el === el);
+        this.images.splice(index,1);
+    }
     initListener(scrollParent){
         if(!this.scrollParent.has(scrollParent)){
             const position = getStyle(scrollParent, "position");
@@ -35,12 +39,6 @@ class LazyImage{
     loadImage(){
         let scrollParent,el;
         let images=this.images;
-        // clear unmounted images
-        for(let i=0;i < images.length;i++){
-            if(images[i].el.parentNode === null){
-                images.splice(i--,1);
-            }
-        }
 
         // refresh images
         for(let i = 0;i < images.length;i++){

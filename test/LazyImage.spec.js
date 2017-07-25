@@ -95,7 +95,7 @@ describe('Function loadImage',()=>{
         let img=new Image();
         img.setAttribute('data-src','test');
         lazyImage.addImage(img);
-        lazyImage.loadImage();
+        lazyImage.removeImage(img);
         expect(lazyImage.images.length).to.be.equal(0);
         expect(img.src).to.be.equal('');
     })

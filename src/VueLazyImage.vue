@@ -32,6 +32,9 @@
             };
             this.$lazyImages.loadImage();
         },
+        beforeDestroy(){
+            this.$lazyImages.removeImage(this.$refs.target);
+        },
         props:{
             src:{
                 type:String,
