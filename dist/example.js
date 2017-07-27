@@ -1,5 +1,5 @@
 /*!
- * vue-lazy-images v1.2.4
+ * vue-lazy-images v1.3.1
  * (c) 2017 LowesYang
  * Released under the MIT License.
  */
