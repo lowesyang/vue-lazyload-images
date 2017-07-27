@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Example Test</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #App{
+            padding-top:50px;
+        }
+        .notice{
+            padding:10px;
+            font-size:14px;
+        }
+        .scrollY{
+            position: relative;
+            width:100%;
+            max-height:46vh;
+            overflow: auto;
+            margin-bottom:5px;
+        }
+        .scrollX{
+            width:100%;
+            white-space: nowrap;
+            overflow-x: auto;
+        }
+        .header{
+            position: fixed;
+            top:0;
+            width:100%;
+            height:50px;
+            background-color:  #0097A7;
+            z-index:1;
+        }
+        .header .addBtn{
+            margin:7px;
+            padding:10px 15px;
+            border-radius: 5px;
+            border:0;
+            background-color: #212121;
+            color:white;
+            cursor:pointer;
+        }
+        .scrollY .img{
+            width:25%;
+            float:left;
+        }
+        .scrollX .img{
+            width:25%;
+            display: inline-block;
+            margin-top:0px;
+        }
+        .notice{
+            background-color: #212121;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+<div id="App">
+    <div class="header">
+        <button class="addBtn" @click="addImageY">Add image in scroll-Y</button>
+        <button class="addBtn" @click="addImageX">Add image in scroll-X</button>
+    </div>
+    <div class="notice">Y方向滚动懒加载</div>
+    <div class="scrollY">
+        <lazy-image class="img" v-for="item in itemsY" :src="item" :placeholder="placeholder"></lazy-image>
+    </div>
+    <div class="notice">X方向滚动懒加载</div>
+    <div class="scrollX">
+        <lazy-image class="img" v-for="item in itemsX" :src="item" :placeholder="placeholder"></lazy-image>
+    </div>
+</div>
+<script src="../dist/example.js"></script>
+</body>
+</html>

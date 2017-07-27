@@ -37,16 +37,31 @@ class LazyImage{
         }
     }
     loadImage(){
-        let scrollParent,el;
         let images=this.images;
 
         // refresh images
         for(let i = 0;i < images.length;i++){
-            scrollParent=images[i].scrollParent;
-            el=images[i].el;
+            const scrollParent=images[i].scrollParent;
+            const el=images[i].el;
             // ready to enter the screen but still "options.offset" px to go,load the img
             if(checkInView(el,scrollParent,this.options.offset)){
-                el.src=el.dataset.src || '';
+                const src=el.dataset.src;
+                const placeholder=el.dataset.placeholder;
+                if(!src){
+                    console.error(`${el} has no attribute 'data-src'!`);
+                }
+                if(placeholder){
+                    let tmpImg=new Image();
+                    tmpImg.src=src;
+                    el.src=placeholder;
+                    tmpImg.onload=()=>{
+                        el.src=src;
+                        tmpImg=null;
+                    }
+                }
+                else{
+                    el.src=src;
+                }
                 images.splice(i--,1);
             }
         }
