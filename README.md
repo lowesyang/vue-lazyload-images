@@ -1,5 +1,5 @@
 # vue-lazyload-images
-[![npm](https://img.shields.io/badge/npm-v1.3.0-green.svg)](https://www.npmjs.com/package/vue-lazy-images)
+[![npm](https://img.shields.io/badge/npm-v1.3.1-green.svg)](https://www.npmjs.com/package/vue-lazy-images)
 [![Build Status](https://travis-ci.org/yyh1102/vue-lazyload-images.svg?branch=master)](https://travis-ci.org/yyh1102/vue-lazyload-images)
 [![Coverage Status](https://coveralls.io/repos/github/yyh1102/vue-lazyload-images/badge.svg)](https://coveralls.io/github/yyh1102/vue-lazyload-images)
 [![npm](https://img.shields.io/npm/l/express.svg)](https://opensource.org/licenses/mit-license.php)
@@ -33,8 +33,8 @@ Vue.use(VueLazyImage)
 Template
 ```html
 <lazy-image 
-    :src='图片url'
-    :placeholder='图片加载前显示的占位或loading图'  
+    :src='url'
+    :placeholder='url of placeholder or loading image'  
 >
 ```
 
