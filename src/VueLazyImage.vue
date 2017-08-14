@@ -1,39 +1,39 @@
 <template>
-    <div>
-        <img
-                ref="target"
-                :class="{'show':show}"
-                :data-src="src"
-                :data-placeholder="placeholder"
-                width="100%"
-                height="100%"
-        >
-    </div>
+  <div>
+    <img
+        ref="target"
+        :class="{'show':show}"
+        :data-src="src"
+        :data-placeholder="placeholder"
+        width="100%"
+        height="100%"
+    >
+  </div>
 </template>
 
 <script>
-    export default{
-        data(){
-            return {
-                show:false
-            }
-        },
-        mounted(){
-            this.$lazyImages.addImage(this.$refs.target);
-            this.$refs.target.onload=()=>{
-                this.show=true;
-            };
-            this.$lazyImages.loadImage();
-        },
-        beforeDestroy(){
-            this.$lazyImages.removeImage(this.$refs.target);
-        },
-        props:{
-            src:{
-                type:String,
-                required:true
-            },
-            placeholder:String
-        }
+  export default {
+    data() {
+      return {
+        show: false
+      }
+    },
+    mounted() {
+      this.$lazyImages.addImage(this.$refs.target);
+      this.$refs.target.onload = () => {
+        this.show = true;
+      };
+      this.$lazyImages.loadImage();
+    },
+    beforeDestroy() {
+      this.$lazyImages.removeImage(this.$refs.target);
+    },
+    props: {
+      src: {
+        type: String,
+        required: true
+      },
+      placeholder: String
     }
+  }
 </script>

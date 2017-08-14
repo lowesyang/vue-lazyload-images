@@ -45,3 +45,5 @@ Template
 |:----|:------------|:--------|:-----|
 | offset | offset distance for pre-loading | 0 | Number |
 | events | events that you want parentNode listen for | ['scroll', 'wheel', 'mousewheel', 'resize', 'animationend', 'transitionend', 'touchmove'] | Array |
+| throttle | spacing interval of continuous calling | 0(ms) | Number | 
+| debounce | idle time between two actions | 0(ms) | Number |

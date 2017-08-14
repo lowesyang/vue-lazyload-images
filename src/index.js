@@ -10,20 +10,20 @@ import LazyImage from "./LazyImage"
  *     events:['scroll','resize'..]  //events which window should listen
  *  }
  */
-const install=(vue,options={})=>{
-    vue.component('lazy-image',VueLazyImage);
-    options.offset=parseInt(options.offset,10) || 0;
-    let lazyImg=new LazyImage(options);
-    vue.prototype.$lazyImages=lazyImg;
+const install = (vue, options = {}) => {
+  vue.component('lazy-image', VueLazyImage);
+  options.offset = parseInt(options.offset, 10) || 0;
+  let lazyImg = new LazyImage(options);
+  vue.prototype.$lazyImages = lazyImg;
 }
 
 //default export
 export default {
-    install,
-    VueLazyImage
+  install,
+  VueLazyImage
 }
 //for cdn
 export {
-    install,
-    VueLazyImage
+  install,
+  VueLazyImage
 }
