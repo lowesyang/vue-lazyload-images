@@ -35,7 +35,7 @@ Template
 <lazy-image 
     :src='url'
     :placeholder='url of placeholder or loading image'  
->
+/>
 ```
 
 ## Options
