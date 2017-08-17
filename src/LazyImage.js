@@ -61,20 +61,14 @@ class LazyImage {
       // ready to enter the screen but still "options.offset" px to go,load the img
       if (checkInView(el, scrollParent, this.options.offset)) {
         const src = el.dataset.src;
-        const placeholder=el.src;
         if (!src) {
           console.error(`${el} has no attribute 'data-src'!`);
         }
-        if (placeholder) {
-          let tmpImg = new Image();
-          tmpImg.src = src;
-          tmpImg.onload = () => {
-            el.src = src;
-            tmpImg = null;
-          }
-        }
-        else {
+        let tmpImg = new Image();
+        tmpImg.src = src;
+        tmpImg.onload = () => {
           el.src = src;
+          tmpImg = null;
         }
         images.splice(i--, 1);
       }
