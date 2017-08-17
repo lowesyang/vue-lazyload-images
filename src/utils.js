@@ -42,7 +42,6 @@ const checkInView = function (el, scrollParent = window, offset = 0) {
   right = rect.right + offset;
   isInView = top < clientH && bottom > 0 && left < clientW && right > 0
 
-
   if(scrollParent!==window){
     let scrollTop = scrollParent.scrollTop;
     let scrollLeft = scrollParent.scrollLeft;
