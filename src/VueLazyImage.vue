@@ -4,7 +4,7 @@
         ref="target"
         :class="{'show':show}"
         :data-src="src"
-        :data-placeholder="placeholder"
+        :src="placeholder"
         width="100%"
         height="100%"
     >
