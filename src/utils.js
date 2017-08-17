@@ -42,13 +42,13 @@ const checkInView = function (el, scrollParent = window, offset = 0) {
   right = rect.right + offset;
   isInView = top < clientH && bottom > 0 && left < clientW && right > 0
 
-  if(scrollParent!==window){
+  if (scrollParent !== window) {
     let scrollTop = scrollParent.scrollTop;
     let scrollLeft = scrollParent.scrollLeft;
     let width = el.offsetWidth, height = el.offsetHeight;
     clientH = scrollParent.clientHeight;
     clientW = scrollParent.clientWidth;
-    while (el != scrollParent && el != null) {
+    while (el && el !== scrollParent) {
       let borderWidth = parseInt(getStyle(el, "border-width"));
       offsetTop += el.offsetTop + borderWidth;
       offsetLeft += el.offsetLeft + borderWidth;
