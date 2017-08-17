@@ -1,13 +1,13 @@
 {
   "name": "vue-lazy-images",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "A plugin of lazy-load images for vue2.x",
   "main": "dist/VueLazyImages.js",
   "scripts": {
     "karma": "karma start config/karma.conf.js",
     "test": "karma start config/karma.conf.js --single-run",
     "start": "webpack-dev-server --hot --inline --port 8080 --config config/webpack.dev.config.js",
-    "build": "webpack --config config/webpack.prod.config.js",
+    "build": "npm run test && webpack --config config/webpack.prod.config.js",
     "coverage": "cat ./coverage/lcov.info | coveralls"
   },
   "keywords": [

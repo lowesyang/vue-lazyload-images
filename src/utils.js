@@ -29,20 +29,21 @@ const getScrollParent = (el) => {
 const checkInView = function (el, scrollParent = window, offset = 0) {
   let clientH, clientW;
   let offsetTop = 0, offsetLeft = 0;
-  if (scrollParent === window) {
-    clientH = document.documentElement.clientHeight || document.body.clientHeight;
-    clientW = document.documentElement.clientWidth || document.body.clientWidth;
+  let isInView;
+  clientH = document.documentElement.clientHeight || document.body.clientHeight;
+  clientW = document.documentElement.clientWidth || document.body.clientWidth;
 
-    // use getBoundingClientRect
-    let top, left, right, bottom, rect;
-    rect = el.getBoundingClientRect();
-    top = rect.top - offset;
-    left = rect.left - offset;
-    bottom = rect.bottom + offset;
-    right = rect.right + offset;
-    return top < clientH && bottom > 0 && left < clientW && right > 0
-  }
-  else {
+  // use getBoundingClientRect
+  let top, left, right, bottom, rect;
+  rect = el.getBoundingClientRect();
+  top = rect.top - offset;
+  left = rect.left - offset;
+  bottom = rect.bottom + offset;
+  right = rect.right + offset;
+  isInView = top < clientH && bottom > 0 && left < clientW && right > 0
+
+
+  if(scrollParent!==window){
     let scrollTop = scrollParent.scrollTop;
     let scrollLeft = scrollParent.scrollLeft;
     let width = el.offsetWidth, height = el.offsetHeight;
@@ -54,10 +55,10 @@ const checkInView = function (el, scrollParent = window, offset = 0) {
       offsetLeft += el.offsetLeft + borderWidth;
       el = el.offsetParent;
     }
-    return scrollTop + clientH > offsetTop - offset && offsetTop + height + offset > scrollTop
-      && scrollLeft + clientW > offsetLeft - offset && offsetLeft + width + offset > scrollLeft
-
+    isInView = isInView && (scrollTop + clientH > offsetTop - offset && offsetTop + height + offset > scrollTop
+      && scrollLeft + clientW > offsetLeft - offset && offsetLeft + width + offset > scrollLeft)
   }
+  return isInView;
 }
 
 const throttle = function (fn, interval) {
