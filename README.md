@@ -47,3 +47,4 @@ Template
 | events | events that you want parentNode listen for | ['scroll', 'wheel', 'mousewheel', 'resize', 'animationend', 'transitionend', 'touchmove'] | Array |
 | throttle | spacing interval of continuous calling | 0(ms) | Number | 
 | debounce | idle time between two actions | 0(ms) | Number |
+| classes | add custom classes to image tag | [] | Array |
