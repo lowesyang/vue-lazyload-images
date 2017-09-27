@@ -2,7 +2,7 @@
   <div>
     <img
         ref="target"
-        :class="{'show':show}"
+        :class="imgClass"
         :data-src="src"
         :src="placeholder"
         width="100%"
@@ -16,6 +16,12 @@
     data() {
       return {
         show: false
+      }
+    },
+    computed: {
+      imgClass() {
+        if (this.show) customClasses.push('show')
+        return customClasses
       }
     },
     mounted() {
@@ -33,7 +39,11 @@
         type: String,
         required: true
       },
-      placeholder: String
+      placeholder: String,
+      customClasses: {
+        type: Array,
+        default: []
+      }
     }
   }
 </script>
