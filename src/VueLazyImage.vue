@@ -20,8 +20,8 @@
     },
     computed: {
       imgClass() {
-        if (this.show) customClasses.push('show')
-        return customClasses
+        if (this.show) this.classes.push('show')
+        return this.classes
       }
     },
     mounted() {
@@ -40,7 +40,7 @@
         required: true
       },
       placeholder: String,
-      customClasses: {
+      classes: {
         type: Array,
         default: []
       }
