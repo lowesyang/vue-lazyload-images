@@ -2,7 +2,7 @@
   <div>
     <img
         ref="target"
-        :class="imgClass"
+        :class="_class"
         :data-src="src"
         :src="placeholder"
         width="100%"
@@ -19,9 +19,14 @@
       }
     },
     computed: {
-      imgClass() {
-        if (this.show) this.classes.push('show')
-        return this.classes
+      _class() {
+        if (this.show) {
+            if(this.imgClass instanceof Array) {
+                this.imgClass.push('show');
+            }
+            else this.imgClass += ' show';
+        }
+        return this.imgClass;
       }
     },
     mounted() {
@@ -40,9 +45,9 @@
         required: true
       },
       placeholder: String,
-      classes: {
-        type: Array,
-        default: []
+      imgClass: {
+        type: [Array,String],
+        default: ''
       }
     }
   }

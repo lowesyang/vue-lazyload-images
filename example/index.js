@@ -15,7 +15,7 @@ new Vue({
       ],
       itemsX: [
         "http://photocdn.sohu.com/20151218/mp49366462_1450443096991_4.jpeg",
-        "http://www.andinn.cn/picture/picture20120209530947475.jpg",
+        "http://ww1.sinaimg.cn/mw600/c2ba660dtw1e53cbidiizj20sg0sgtao.jpg",
       ]
     }
   },
