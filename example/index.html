@@ -66,6 +66,7 @@
       background-color: #212121;
       color: white;
     }
+    
   </style>
 </head>
 <body>
@@ -76,7 +77,7 @@
   </div>
   <div class="notice">Y方向滚动懒加载</div>
   <div class="scrollY">
-    <lazy-image class="img" v-for="item in itemsY" :src="item" :placeholder="placeholder"></lazy-image>
+    <lazy-image class="img" img-class="exam" v-for="item in itemsY" :src="item" :placeholder="placeholder"></lazy-image>
   </div>
   <div class="notice">X方向滚动懒加载</div>
   <div class="scrollX">

@@ -1,7 +1,14 @@
+const isIE = function () {
+  if (!!window.ActiveXObject || "ActiveXObject" in window) {
+    return true
+  }
+  else return false
+}
+
 const getStyle = function (el, prop) {
   if (!el || el === window) return null;
-  let value = (getComputedStyle ?
-    getComputedStyle(el, null).getPropertyValue(prop) : el.style[prop]) || el.style[prop];
+  let value = (isIE() ? el.currentStyle[prop] : (getComputedStyle ?
+    getComputedStyle(el, null).getPropertyValue(prop) : el.style[prop])) || el.style[prop];
   return value;
 };
 
@@ -49,11 +56,12 @@ const checkInView = function (el, scrollParent = window, offset = 0) {
     clientH = scrollParent.clientHeight;
     clientW = scrollParent.clientWidth;
     while (el && el !== scrollParent) {
-      let borderWidth = parseInt(getStyle(el, "border-width"));
+      let borderWidth = parseInt(getStyle(el, "border-width")) || 0;
       offsetTop += el.offsetTop + borderWidth;
       offsetLeft += el.offsetLeft + borderWidth;
       el = el.offsetParent;
     }
+    // console.log(scrollTop,clientH,scrollLeft,clientW)
     isInView = isInView && (scrollTop + clientH > offsetTop - offset && offsetTop + height + offset > scrollTop
       && scrollLeft + clientW > offsetLeft - offset && offsetLeft + width + offset > scrollLeft)
   }

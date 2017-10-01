@@ -1,5 +1,6 @@
 import Vue from "vue"
 import LazyImage from "../src";
+import "babel-polyfill"
 // import LazyImage from "vue-lazy-images";
 Vue.use(LazyImage)
 
