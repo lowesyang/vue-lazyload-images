@@ -15,18 +15,19 @@
   export default {
     data() {
       return {
+        imgClassMutable: this.imgClass,
         show: false
       }
     },
     computed: {
       _class() {
         if (this.show) {
-            if(this.imgClass instanceof Array) {
-                this.imgClass.push('show');
+            if(this.imgClassMutable instanceof Array) {
+                this.imgClassMutable.push('show');
             }
-            else this.imgClass += ' show';
+            else this.imgClassMutable += ' show';
         }
-        return this.imgClass;
+        return this.imgClassMutable;
       }
     },
     mounted() {
