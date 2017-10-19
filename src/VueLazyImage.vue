@@ -20,13 +20,14 @@
     },
     computed: {
       _class() {
+        let className;
         if (this.show) {
             if(this.imgClass instanceof Array) {
-                this.imgClass.push('show');
+                className = this.imgClass.concat(['show']);
             }
-            else this.imgClass += ' show';
+            else className = this.imgClass + ' show';
         }
-        return this.imgClass;
+        return className;
       }
     },
     mounted() {

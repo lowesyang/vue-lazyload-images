@@ -1,6 +1,6 @@
 {
   "name": "vue-lazy-images",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "description": "A plugin of lazy-load images for vue2.x",
   "main": "dist/VueLazyImages.js",
   "scripts": {
