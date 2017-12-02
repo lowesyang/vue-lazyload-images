@@ -12,6 +12,8 @@
 </template>
 
 <script>
+  import {debounce} from './utils';
+
   export default {
     data() {
       return {
@@ -22,23 +24,33 @@
       _class() {
         let className;
         if (this.show) {
-            if(this.imgClass instanceof Array) {
-                className = this.imgClass.concat(['show']);
-            }
-            else className = this.imgClass + ' show';
+          if (this.imgClass instanceof Array) {
+            className = this.imgClass.concat(['show']);
+          }
+          else className = this.imgClass + ' show';
+        }
+        else {
+          className = ""
         }
         return className;
       }
     },
     mounted() {
-      this.$lazyImages.addImage(this.$refs.target);
-      this.$refs.target.onload = () => {
-        this.show = true;
-      };
-      this.$lazyImages.loadImage();
+      this.init();
     },
     beforeDestroy() {
       this.$lazyImages.removeImage(this.$refs.target);
+    },
+    watch: {
+      'src': function (val, oldVal) {
+        if (val !== oldVal) {
+          this.show = false;
+          this.$refs.target.onload = () => {
+            this.init();
+          };
+          this.$refs.target.src = this.placeholder;
+        }
+      }
     },
     props: {
       src: {
@@ -47,8 +59,19 @@
       },
       placeholder: String,
       imgClass: {
-        type: [Array,String],
+        type: [Array, String],
         default: ''
+      }
+    },
+    methods: {
+      init() {
+        this.$lazyImages.addImage(this.$refs.target);
+        this.$refs.target.onload = () => {
+          this.show = true;
+          this.$refs.target.onload = null
+        };
+        let loadImage = debounce(this.$lazyImages.loadImage, 100).bind(this.$lazyImages);
+        loadImage()
       }
     }
   }

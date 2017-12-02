@@ -19,6 +19,7 @@ class LazyImage {
     if (!el.tagName || el.tagName.toLowerCase() !== 'img') return;
     let scrollParent = getScrollParent(el);
     if (!scrollParent) return;
+    if (this.images.findIndex(item => item.el === el) >= 0) return;
     let image = {
       el: el,
       scrollParent: scrollParent
@@ -69,10 +70,11 @@ class LazyImage {
         tmpImg.onload = () => {
           el.src = src;
           tmpImg = null;
-        }
-        images.splice(i--, 1);
+        };
+        images[i].loaded = true
       }
     }
+    this.images = images.filter(item => !item.loaded)
   }
 }
 
