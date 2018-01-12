@@ -7,6 +7,7 @@
         :src="placeholder"
         width="100%"
         height="100%"
+        :alt="imgAlt"
     >
   </div>
 </template>
@@ -41,6 +42,10 @@
       this.$lazyImages.removeImage(this.$refs.target);
     },
     props: {
+      imgAlt: {
+        type: String,
+        default: ''
+      },
       src: {
         type: String,
         required: true
